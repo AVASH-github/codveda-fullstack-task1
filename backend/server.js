@@ -1,15 +1,17 @@
 const express = require("express");
 const cors = require("cors");
-const db = require("./db");
 require("dotenv").config();
+const db = require("./db");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Test route
+// Load routes
+app.use("/api/users", userRoutes);
+
 app.get("/", (req, res) => {
   res.send("CodVeda API is running");
 });
